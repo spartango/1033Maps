@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+
+    body {
+        font: 300 36px "Helvetica Neue";
+        overflow: hidden;
+        position: relative;
+    }
+
+    .stats {
+        text-align: left;
+        position: fixed;
+        font-size: 16px;
+        bottom: 40px;
+        left: 40px;
+        text-shadow: #fff 0px 0px 10px;
+    }
+
+    .plot {
+        position: fixed;
+        bottom: 0px;
+        right: 0px;
+        /*background: #ffffff;*/
+        z-index: 1;
+    }
+
+    .map {
+        z-index: -1;
+    }
+
+    h1 {
+        font-size: 64px;
+    }
+
+    h1, h2, h3, h4, h5 {
+        font-weight: inherit;
+        margin: 0;
+    }
+
+    h2, h3 {
+        text-align: left;
+        font-size: inherit;
+        position: fixed;
+        top: 40px;
+        left: 40px;
+        text-shadow: #fff 0px 0px 10px;
+    }
+
+    h2 {
+        font-weight: bold;
+        font-size: 24px;
+        position: fixed;
+    }
+
+    h3 {
+        top: 70px;
+        font-size: 18px;
+    }
+
+    h4 {
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    h5 {
+        font-weight: bold;
+        font-size: 12px;
+    }
+
+    .field {
+        color: #116CD6
+    }
+
+    .crimefield {
+        color: red;
+    }
+
+    .spendfield {
+        color: green;
+    }
+
+    .unit {
+        font-variant: small-caps;
+    }
+
+    .counties {
+        fill: none;
+        stroke: #333;
+    }
+
+    #states path {
+        stroke: #fff;
+    }
+
+    .line {
+        fill: none;
+        stroke-width: 2;
+    }
+
+    .charttitle {
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .axislabel {
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+    .axis text {
+        font-size: 10px;
+    }
+
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: grey;
+        stroke-width: 2;
+    }
+
+    .verticalLine {
+        fill: steelblue;
+        opacity: 0.25;
+    }
+
+    a:link {
+        text-decoration: none;
+        font-variant: small-caps;
+        font-weight: bold;
+    }
+
+    a:visited {
+        text-decoration: none;
+        font-variant: small-caps;
+        font-weight: bold;
+    }
+
+</style>
+<body>
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/2.10.0/d3.v2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.1.0/topojson.min.js"></script>
+<script src="colorbrewer.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
+<script src="states.js"></script>
+<script src="simple_statistics.js"></script>
+<div id="map" class="map">
+</div>
+
+<div id="time" class="plot">
+</div>
+
+<div id="overview">
+    <h2 id="title">
+        The 1033 Program and Crime
+    </h2>
+
+    <h3>
+        <span id="year">2006</span>
+        <button onclick="previousYear()">&larr;</button>
+        <button onclick="nextYear()">&rarr;</button>
+        <small>
+            <a href="http://www.npr.org/2014/09/02/342494225/mraps-and-bayonets-what-we-know-about-the-pentagons-1033-program">
+                learn more</a>
+        </small>
+    </h3>
+</div>
+<div id="stats" class="stats">
+    <h4><span id="state">State</span></h4>
+    <table>
+        <tr>
+            <h5>
+                <td>Population</td>
+                <td><span class="field" id="population"></span></td>
+            </h5>
+        </tr>
+        <tr>
+            <h5>
+                <td>Equipment Value</td>
+                <td><span class="spendfield" id="spend"></span></td>
+            </h5>
+        </tr>
+        <tr>
+            <h5>
+                <td>Violent Crimes</td>
+                <td><span class="crimefield" id="crime"></span></td>
+            </h5>
+        </tr>
+        <tr>
+            <h5>
+                <td>Ratio</td>
+                <td><span class="field" id="ratio"></span></td>
+            </h5>
+        </tr>
+    </table>
+</div>
+
+
+<script src="time.js"></script>
+<script src="geo.js"></script>
+</body>
+</html>
